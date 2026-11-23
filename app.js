@@ -21,7 +21,7 @@ let Subscriptions = {
     },
 
     Disney: {
-        name: "Disney+",
+        name: "Disney",
         id: 4,
         price: 7.99,
         isActive: true
@@ -69,15 +69,13 @@ function calculateCosts() {
     }
 
     for (let subscription in Subscriptions) {
-        if (Subscriptions[subscription].isActive == true) {
-            simulatedCost += Subscriptions[subscription].price;
+         if (Subscriptions[subscription].isActive == true) {
+                simulatedCost += Subscriptions[subscription].price;
+            }
         }
 
     monthlySavings = baselineCost - simulatedCost;
-
     annualImpact = monthlySavings * 12;
-    
-    }
     
     return {
         baselineCost: baselineCost,
@@ -101,6 +99,9 @@ function renderSubscriptions() {
 
   for (const sub of Object.values(Subscriptions)) {
     const subscriptionItem = document.createElement("li");
+    if (!sub.isActive) {
+      subscriptionItem.classList.add("inactive");
+    }
 
     const labelSpan = document.createElement("span");
     labelSpan.textContent = `${sub.name}: $${sub.price.toFixed(2)}/mo`;
@@ -108,9 +109,13 @@ function renderSubscriptions() {
     const toggleInput = document.createElement("input");
     toggleInput.type = "checkbox";
     toggleInput.setAttribute("role", "switch");
-    toggleInput.classList.add("toggle-button");
-    toggleInput.setAttribute("data-subscription", sub.name);
     toggleInput.checked = sub.isActive;
+
+    toggleInput.addEventListener("change", function () {
+      ToggleSubscription(sub.name);
+      subscriptionItem.classList.toggle("inactive");
+      updateKPI();
+    });
 
     subscriptionItem.appendChild(labelSpan);
     subscriptionItem.appendChild(toggleInput);
