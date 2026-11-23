@@ -87,10 +87,14 @@ function calculateCosts() {
     };
 }
 
-console.log("Before toggle:", calculateCosts());
-ToggleSubscription("Netflix");
-console.log("After cancelling Netflix:", calculateCosts());
+console.log(calculateCosts());
 
-console.log("Before adding new subscription:", calculateCosts());
-AddSubscription("HBO Max", 5, 15.99, true);
-console.log("After adding HBO Max:", calculateCosts());
+const currentSpendElement = document.getElementById("current-spend");
+const simulatedCostElement = document.getElementById("simulated-cost");
+const monthlySavingsElement = document.getElementById("monthly-savings");
+const annualImpactElement = document.getElementById("annual-impact");
+
+currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
+simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
+monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
+annualImpactElement.textContent = `${calculateCosts().annualImpact.toFixed(2)}`;
