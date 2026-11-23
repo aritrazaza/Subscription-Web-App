@@ -106,13 +106,22 @@ function renderSubscriptions() {
     }
 }
 
+renderSubscriptions();
+
 const toggleButtons = document.querySelectorAll(".toggle-button");
 
+function updateKPI() {
+    currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
+    simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
+    monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
+    annualImpactElement.textContent = `${calculateCosts().annualImpact.toFixed(2)}`;
+}
+
 for (let button of toggleButtons) {
-    button.addEventListener("click", function () {
+    button.addEventListener("change", function () {
         const subscriptionName = button.getAttribute("data-subscription");
         ToggleSubscription(subscriptionName);
-        currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
+        updateKPI();
     });
 }
 
@@ -120,5 +129,3 @@ currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
 simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
 monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
 annualImpactElement.textContent = `${calculateCosts().annualImpact.toFixed(2)}`;
-
-renderSubscriptions();
