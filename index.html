@@ -12,6 +12,26 @@
         <h1 id="header">Subscription Manager</h1>
         <p id="paragraph">Toggle services on and off to see how much you save monthly and annually.</p>
 
+        <form id="add-subscription-form">
+            <fieldset role="group">
+                <input 
+                type="text" 
+                id="sub-name" 
+                placeholder="Service name (e.g., iCloud+)" 
+                required 
+                />
+                <input 
+                type="number" 
+                id="sub-price" 
+                placeholder="Monthly cost ($)" 
+                step="0.01" 
+                min="0.01" 
+                required 
+                />
+                <button type="submit">Add</button>
+            </fieldset>
+        </form>
+
         <article id="subscription-summary">
             <p>Current Spend: $<span id="current-spend">{CurrentSpendElement}</span></p>
             <p>Simulated Cost: $<span id="simulated-cost">{SimulatedCostElement}</span></p>

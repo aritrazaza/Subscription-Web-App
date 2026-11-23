@@ -110,7 +110,7 @@ function renderSubscriptions() {
     toggleInput.setAttribute("role", "switch");
     toggleInput.classList.add("toggle-button");
     toggleInput.setAttribute("data-subscription", sub.name);
-    toggleInput.checked = sub.active;
+    toggleInput.checked = sub.isActive;
 
     subscriptionItem.appendChild(labelSpan);
     subscriptionItem.appendChild(toggleInput);
@@ -141,3 +141,27 @@ currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
 simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
 monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
 annualImpactElement.textContent = `${calculateCosts().annualImpact.toFixed(2)}`;
+
+const addForm = document.getElementById("add-subscription-form");
+const nameInput = document.getElementById("sub-name");
+const priceInput = document.getElementById("sub-price");
+
+addForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const name = nameInput.value.trim();
+  const price = parseFloat(priceInput.value);
+
+  if (!name || isNaN(price) || price <= 0) return;
+
+  const key = name.toLowerCase();
+  Subscriptions[key] = {
+    name: name,
+    price: price,
+    active: true
+  };
+
+  renderSubscriptions();
+  updateKPI();
+  addForm.reset();
+});

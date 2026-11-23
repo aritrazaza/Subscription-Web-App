@@ -33,3 +33,15 @@
 #subscriptionList {
     padding-left: 1rem;
 }
+
+#add-subscription-form {
+    margin: 1rem;
+}
+
+#subscription-summary {
+    margin: 1rem;
+}
+
+#subscription-manager {
+    margin: 1rem;
+}
