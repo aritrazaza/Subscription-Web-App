@@ -99,9 +99,9 @@ const subscriptionListElement = document.getElementById("subscription-list");
 function renderSubscriptions() {
     subscriptionListElement.innerHTML = "";
 
-    for (let subscription in subscriptions) {
+    for (let subscription in Subscriptions) {
         const subscriptionItem = document.createElement("li");
-        subscriptionItem.textContent = `${subscriptions[subscription].name}: ${subscriptions[subscription].price.toFixed(2)}`;
+        subscriptionItem.textContent = `${Subscriptions[subscription].name}: ${Subscriptions[subscription].price.toFixed(2)}`;
         subscriptionListElement.appendChild(subscriptionItem);
     }
 }
@@ -110,3 +110,5 @@ currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
 simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
 monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
 annualImpactElement.textContent = `${calculateCosts().annualImpact.toFixed(2)}`;
+
+renderSubscriptions();
