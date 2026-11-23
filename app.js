@@ -106,6 +106,16 @@ function renderSubscriptions() {
     }
 }
 
+const toggleButtons = document.querySelectorAll(".toggle-button");
+
+for (let button of toggleButtons) {
+    button.addEventListener("click", function () {
+        const subscriptionName = button.getAttribute("data-subscription");
+        ToggleSubscription(subscriptionName);
+        currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
+    });
+}
+
 currentSpendElement.textContent = `${calculateCosts().baselineCost.toFixed(2)}`;
 simulatedCostElement.textContent = `${calculateCosts().simulatedCost.toFixed(2)}`;
 monthlySavingsElement.textContent = `${calculateCosts().monthlySavings.toFixed(2)}`;
