@@ -97,13 +97,25 @@ const annualImpactElement = document.getElementById("annual-impact");
 const subscriptionListElement = document.getElementById("subscription-list");
 
 function renderSubscriptions() {
-    subscriptionListElement.innerHTML = "";
+  subscriptionListElement.innerHTML = "";
 
-    for (let subscription in Subscriptions) {
-        const subscriptionItem = document.createElement("li");
-        subscriptionItem.textContent = `${Subscriptions[subscription].name}: ${Subscriptions[subscription].price.toFixed(2)}`;
-        subscriptionListElement.appendChild(subscriptionItem);
-    }
+  for (const sub of Object.values(Subscriptions)) {
+    const subscriptionItem = document.createElement("li");
+
+    const labelSpan = document.createElement("span");
+    labelSpan.textContent = `${sub.name}: $${sub.price.toFixed(2)}/mo`;
+
+    const toggleInput = document.createElement("input");
+    toggleInput.type = "checkbox";
+    toggleInput.setAttribute("role", "switch");
+    toggleInput.classList.add("toggle-button");
+    toggleInput.setAttribute("data-subscription", sub.name);
+    toggleInput.checked = sub.active;
+
+    subscriptionItem.appendChild(labelSpan);
+    subscriptionItem.appendChild(toggleInput);
+    subscriptionListElement.appendChild(subscriptionItem);
+  }
 }
 
 renderSubscriptions();

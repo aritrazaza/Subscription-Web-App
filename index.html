@@ -6,27 +6,23 @@
         <title>Subscription Manager</title>
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="node_modules/@picocss/pico/css/pico.min.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Subscription Manager</h1>
+        <h1 id="header">Subscription Manager</h1>
         <p>Toggle services on and off to see how much you save monthly and annually.</p>
 
-        <div>
+        <article id="subscription-summary">
             <p>Current Spend: $<span id="current-spend">{CurrentSpendElement}</span></p>
             <p>Simulated Cost: $<span id="simulated-cost">{SimulatedCostElement}</span></p>
             <p>Monthly Savings: $<span id="monthly-savings">{MonthlySavingsElement}</span></p>
             <p>Annual Impact: $<span id="annual-impact">{AnnualImpactElement}</span></p>
-        </div>
+        </article>
 
         <P>Subscription List:</P>
-        <div>
+        <article id="subscription-manager">
             <ul id="subscription-list"></ul>
-            <input type="checkbox" id="toggle-all" role="switch" class="toggle-button" data-subscription="all"/>
-            <input type="checkbox" id="netflix-toggle" role="switch" class="toggle-button" data-subscription="Netflix"/>
-            <input type="checkbox" id="spotify-toggle" role="switch" class="toggle-button" data-subscription="Spotify"/>
-            <input type="checkbox" id="hulu-toggle" role="switch" class="toggle-button" data-subscription="Hulu"/>
-            <input type="checkbox" id="disney-toggle" role="switch" class="toggle-button" data-subscription="Disney"/>
-        </div>
+        </article>
         <script src="app.js"></script>
     </body>
 </html>
